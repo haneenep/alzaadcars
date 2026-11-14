@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Palette (flat colours only, no gradients anywhere):
+   #005ACD deep · #0093CB azure · #6DD7FD sky · #BEF0FF mist · #F5FFFF paper */
+:root {
+  --deep: #005ACD; --azure: #0093CB; --sky: #6DD7FD; --mist: #BEF0FF; --paper: #F5FFFF;
+  --accent: #0093CB; /* header hover colour; SiteHeader overrides per section tone */
+}
+
+/* The page scrolls inside a fixed frame (see SiteShell), never the document. */
+html, body { height: 100%; overflow: hidden; background: var(--paper); }
+body { color: var(--deep); }
+.page-scroller { scrollbar-width: none; -ms-overflow-style: none; outline: none; }
+.page-scroller::-webkit-scrollbar { display: none; }
+
+/* Michroma is wide and single-weight: give it room. */
+.font-display { letter-spacing: 0.01em; font-weight: 400; }
+h1.font-display, h2.font-display { line-height: 1.16; }
+
+.js-hide { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .js-hide { opacity: 1; } }
+
+.outline-deep { color: transparent; -webkit-text-stroke: 1px var(--deep); }
+.outline-sky { color: transparent; -webkit-text-stroke: 1px var(--sky); }
+.outline-paper { color: transparent; -webkit-text-stroke: 1px var(--paper); }
+.outline-mist { color: transparent; -webkit-text-stroke: 1px var(--mist); }
+
+/* Section surfaces: one flat colour each */
+.s-deep { background: var(--deep); color: var(--paper); }
+.s-mist { background: var(--mist); color: var(--deep); }
+.s-paper { background: var(--paper); color: var(--deep); }
+
+@keyframes cue { 0% { transform: translateY(-100%); } 100% { transform: translateY(200%); } }
+@media (prefers-reduced-motion: reduce) { * { transition-duration: 0.01ms !important; } }
+
+@keyframes tile-in { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: none; } }
+@keyframes sheet-up { from { transform: translateY(100%); } to { transform: none; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .tile-in, .sheet-up, .fade-in { animation: none !important; } }
+.tile-in { animation: tile-in .7s cubic-bezier(.2,.7,.2,1) both; }
+.sheet-up { animation: sheet-up .45s cubic-bezier(.2,.8,.2,1) both; }
+.fade-in { animation: fade-in .3s ease both; }
+input[type="range"] { accent-color: var(--deep); }
